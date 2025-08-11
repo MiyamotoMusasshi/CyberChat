@@ -4,6 +4,8 @@ import http from 'http'
 import cors from 'cors'
 import dotenv from 'dotenv'
 
+import register from './database/function/registration.js'
+
 dotenv.config()
 
 const PORT = process.env.PORT
@@ -26,11 +28,7 @@ const server = http.createServer(app)
 //     ws.send('connection')
 // })
 
-app.post('/register', (req,res)=>{
-
-    
-    res.json({msg:'hello'})
-})
+app.post('/register', register)
 
 server.listen(PORT,()=>{
 
