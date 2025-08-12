@@ -1,3 +1,19 @@
+@keyframes loadedErrorMsg{
+    from{
+        opacity: 0;
+        left: 23vw;
+    }
+    50%{
+        opacity: 0.5;
+        left: 27vw;
+    }
+    to{
+        opacity: 1;
+        left: 25vw;
+    }
+}
+
+
 body{
     background-image: url(../img/background.gif);
     background-repeat: no-repeat;
@@ -51,6 +67,18 @@ a{
         opacity: 100%;
     }
 }
+span{
+    position: absolute;
+    left: 25vw;
+    display: flex;
+    justify-content: space-around;
+    width: 50vw;
+    margin-top: 720px;
+    transition: ease-in-out;
+    animation-name: loadedErrorMsg;
+    animation-duration: 2s;
+    animation-iteration-count: initial;
+}
 @media(max-width: 1000px){
     main{
         left: 0;
@@ -63,6 +91,10 @@ a{
     input::-webkit-input-placeholder{
         font-size: 2vmax;
     }
+    span{
+        width: 100%;
+        left: 0;
+    }
 }
 @media(max-width: 770px){
     main{
@@ -71,6 +103,9 @@ a{
     .main--shadow{
         height: 385px;
     }
+    span{
+        margin-top: 620px;
+    }
 }
 @media(max-width: 400px){
     main{
@@ -78,5 +113,8 @@ a{
     }
     .main--shadow{
         margin-top: 90px;
+    }
+    span{
+        margin-top: 520px;
     }
 }

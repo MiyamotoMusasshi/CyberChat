@@ -21,9 +21,22 @@ btnRegister.addEventListener('click',()=>{
       return res.json();
 
     })
-    .then(data => {
+    .then(msgFromServer=> {
 
-      console.log(data)
+      if (document.querySelector('.cyber-att')){
+
+        document.querySelector('body').removeChild(document.querySelector('.cyber-att'))
+      }
+
+      if (msgFromServer) {
+
+        const elementError = document.createElement('span')
+
+        elementError.classList.add('cyber-att')
+        elementError.innerHTML=msgFromServer.error
+
+        document.querySelector('body').appendChild(elementError)
+      }
   })
 })
 
