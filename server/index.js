@@ -5,6 +5,7 @@ import cors from 'cors'
 import dotenv from 'dotenv'
 
 import register from './database/function/registration.js'
+import login from './database/function/autorization.js'
 
 dotenv.config()
 
@@ -29,6 +30,7 @@ const server = http.createServer(app)
 // })
 
 app.post('/register', register)
+app.post('/login', login)
 
 server.listen(PORT,()=>{
 

@@ -1,12 +1,11 @@
-const UsernameInput = document.querySelector('#username_register')
-const PasswordInput = document.querySelector('#password_register')
-const returnPasswordInput = document.querySelector('#return-password_register')
-const btnRegister = document.querySelector('#register-btn')
+const UsernameInput = document.querySelector('#username_login')
+const PasswordInput = document.querySelector('#password_login')
+const btnLogin = document.querySelector('#login-btn')
 
 
-btnRegister.addEventListener('click',()=>{
+btnLogin.addEventListener('click',()=>{
 
-  fetch('http://localhost:8080/register',{
+  fetch('http://localhost:8080/login',{
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -14,7 +13,6 @@ btnRegister.addEventListener('click',()=>{
       body: JSON.stringify({
         username: UsernameInput.value,
         password: PasswordInput.value,
-        returnPassword: returnPasswordInput.value
       })
     }).then(res => {
 
@@ -40,19 +38,3 @@ btnRegister.addEventListener('click',()=>{
       }
   })
 })
-
-// fetch('http://localhost:8080/register',{
-//             method: 'POST',
-//             headers: {
-//               'Content-Type': 'application/json'
-//             },
-//       }).then(res => {
-
-//         return res.json();
-
-//       })
-//       .then(data => {
-
-//         console.log(data)
-
-// })

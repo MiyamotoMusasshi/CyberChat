@@ -63,11 +63,12 @@ a{
     cursor: pointer;
     opacity: 70%;
     transition: 0.3s ease-in-out;
+    text-decoration: none;
     &:hover{
         opacity: 100%;
     }
 }
-span{
+#error{
     position: absolute;
     left: 25vw;
     display: flex;

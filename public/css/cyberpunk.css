@@ -193,12 +193,6 @@ body
 .ac-dark { --ac: var(--dark); }
 /*#endregion*/
 
-/*#region razor*/
-.cyber-razor-top
-{
-    margin-top: 30px;
-    position: relative;
-}
 
 .cyber-razor-bottom
 {
