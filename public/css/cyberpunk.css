@@ -604,8 +604,6 @@ body
 .cyber-tile-small img,
 .cyber-tile-big img
 {
-    width: 100%;
-    height: auto;
     clip-path: polygon(0 0, 0 100%, 100% 100%, 100% var(--tile-edges), calc(100% - var(--tile-edges)) 0);
 }
 
