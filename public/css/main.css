@@ -203,4 +203,32 @@ ul::-webkit-scrollbar-track:active {
   gap: 10px;
   cursor: pointer;
 }
+.profile{
+  position: absolute;
+  width: 40vw;
+  height: 35vh;
+  left: 30vw;
+  margin-top: 300px;
+  border: 1px solid #00ffd2;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.profile img{
+  border: none;
+  width: 100px;
+  height: 100px;
+  cursor: pointer;
+  &:hover{
+    opacity: 70%;
+  }
+}
+.profile span,.profile div{
+  font-size: 2vmax;
+  cursor: pointer;
+  &:hover{
+    opacity: 70%;
+  }
+}
 /*No adapted for mobile device,since this is the whole page to redo (I don't want to yet)*/
