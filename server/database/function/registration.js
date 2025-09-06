@@ -48,6 +48,8 @@ export default async function register(req,res) {
         })
     }else{
 
+        res.json({error: "noError"})
+        
         const hashPassword = bscrypt.hashSync(password, salt)
 
         database.run(`INSERT INTO users (username, password) VALUES (?, ?)`, [username, hashPassword])

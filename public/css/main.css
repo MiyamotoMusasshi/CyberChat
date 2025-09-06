@@ -40,6 +40,7 @@ ul{
     height: 93%;
     overflow-y:scroll;
     overflow-x: hidden;
+    scroll-behavior: smooth;
 }
 ul::-webkit-scrollbar {
   height: 3px;
@@ -136,6 +137,7 @@ ul::-webkit-scrollbar-track:active {
   border-bottom: 1px solid #00ffd2;
   overflow-y: scroll;
   background-color: rgba(0, 0, 0, 0.517);
+  scroll-behavior: smooth;
 }
 .chat_msg::-webkit-scrollbar {
   height: 3px;

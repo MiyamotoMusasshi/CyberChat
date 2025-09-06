@@ -31,6 +31,9 @@ export default async function login(req,res) {
 
             error:error
         })
+    }else{
+
+        res.json({error:"noError"})
     }
     
 }

@@ -26,7 +26,7 @@ btnLogin.addEventListener('click',()=>{
         document.querySelector('body').removeChild(document.querySelector('.cyber-att'))
       }
 
-      if (msgFromServer) {
+      if (msgFromServer.error!='noError') {
 
         const elementError = document.createElement('span')
 
@@ -35,6 +35,10 @@ btnLogin.addEventListener('click',()=>{
         elementError.innerHTML=msgFromServer.error
 
         document.querySelector('body').appendChild(elementError)
+      }
+      else{
+        
+        window.location.href='http://127.0.0.1:5500/public/pages/main.html'
       }
   })
 })
