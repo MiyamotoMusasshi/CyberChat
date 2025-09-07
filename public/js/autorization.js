@@ -37,7 +37,7 @@ btnLogin.addEventListener('click',()=>{
         document.querySelector('body').appendChild(elementError)
       }
       else{
-        
+        document.cookie='User='+UsernameInput.value+'; max-age=31536000'
         window.location.href='http://127.0.0.1:5500/public/pages/main.html'
       }
   })

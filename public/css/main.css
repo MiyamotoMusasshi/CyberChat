@@ -216,6 +216,7 @@ ul::-webkit-scrollbar-track:active {
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 5px;
 }
 .profile img{
   border: none;
@@ -232,5 +233,16 @@ ul::-webkit-scrollbar-track:active {
   &:hover{
     opacity: 70%;
   }
+}
+.log-out{
+  margin-top: auto;
+}
+.log-out::before{
+  background: red;
+  transform: translate(4px,0);
+}
+.log-out span{
+  background: red;
+  text-shadow: 2px 2px red, -2px -2px red;
 }
 /*No adapted for mobile device,since this is the whole page to redo (I don't want to yet)*/
