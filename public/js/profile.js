@@ -15,7 +15,7 @@ fetch('http://localhost:8080/myprofile',{
 
     return res.json()
 }).then(myInfo=>{
-    console.log(myInfo)
+
     myName.innerHTML=document.cookie.replace('User=','')
     myImg.src=myInfo.avatar
 })
@@ -71,7 +71,23 @@ function openInfoProfile(isMyProfile,username) {
 
         divProfile.appendChild(btnLogout)
         btnLogout.appendChild(cyberSpanForBtn)
+
+        btnLogout.addEventListener('click',()=>{
+            document.cookie='User=; max-age=31536000'
+            window.location.href='http://127.0.0.1:5500/public/pages/Autorization.html'
+        })
     }
+
+    document.addEventListener('click',(e)=>{
+
+        if (divProfile.contains(e.target)==false && myInfo.contains(e.target)==false){
+
+            body.removeChild(divProfile)
+        }
+    })
 }
 
-myInfo.addEventListener('click',openInfoProfile(1,document.cookie.replace('User=','')))
+myInfo.addEventListener('click',()=>{
+
+    openInfoProfile(1,document.cookie.replace('User=',''))
+})

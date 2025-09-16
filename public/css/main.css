@@ -206,6 +206,7 @@ ul::-webkit-scrollbar-track:active {
   cursor: pointer;
 }
 .profile{
+  background-color: rgba(0, 0, 0, 0.261);
   position: absolute;
   width: 40vw;
   height: 35vh;
