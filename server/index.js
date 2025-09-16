@@ -8,7 +8,7 @@ import multer from 'multer';
 
 import register from './database/function/registration.js'
 import login from './database/function/autorization.js'
-import sendProfileImg from './main-function/sendProfileImg.js'
+import sendProfileInfo from './main-function/sendProfileInfo.js'
 
 dotenv.config()
 
@@ -56,7 +56,8 @@ const server = http.createServer(app)
 
 app.post('/register', register)
 app.post('/login', login)
-app.post('/myprofile',sendProfileImg)
+app.post('/myprofile',sendProfileInfo)
+app.post('/profileInfo',sendProfileInfo)
 
 server.listen(PORT,()=>{
 
