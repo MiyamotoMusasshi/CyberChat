@@ -59,12 +59,17 @@ function openInfoProfile(isMyProfile,username) {
 
         const btnLogout = document.createElement('button')
         const cyberSpanForBtn = document.createElement('span')
+        const changeFile = document.createElement('input')
 
         btnLogout.classList.add('cyber-button-small')
         btnLogout.classList.add('fg-red')
         btnLogout.classList.add('bg-dark')
         btnLogout.classList.add('log-out')
         cyberSpanForBtn.classList.add('glitchtext')
+
+        changeFile.style.display='none'
+        changeFile.type='file'
+        changeFile.name='avatar'
 
         btnLogout.innerHTML='Log out'
         cyberSpanForBtn.innerHTML='Log out'
@@ -75,6 +80,34 @@ function openInfoProfile(isMyProfile,username) {
         btnLogout.addEventListener('click',()=>{
             document.cookie='User=; max-age=31536000'
             window.location.href='http://127.0.0.1:5500/public/pages/Autorization.html'
+        })
+
+
+        avatar.addEventListener('click',()=>{
+
+            changeFile.click()
+        })
+
+        changeFile.addEventListener('change',(event)=>{
+
+            const fileForChangeAvatar = event.target.files[0]
+
+            if (fileForChangeAvatar){
+
+                const formData = new FormData()
+   
+                formData.append('avatar',fileForChangeAvatar,`avatar${document.cookie.replace('User=','')}.png`)
+
+
+                fetch('http://localhost:8080/changeavatar',{
+                    method: 'POST',
+                    credentials: 'include',
+                    headers: {
+                        Accept: 'application/json'
+                    },
+                    body: formData,
+                })
+            }
         })
     }
 
