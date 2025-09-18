@@ -246,4 +246,10 @@ ul::-webkit-scrollbar-track:active {
   background: red;
   text-shadow: 2px 2px red, -2px -2px red;
 }
+.profile_change{
+  width: 60%;
+  background-color: transparent;
+  border: 1px solid #00ffd2;
+  color: yellow;
+}
 /*No adapted for mobile device,since this is the whole page to redo (I don't want to yet)*/

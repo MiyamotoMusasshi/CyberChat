@@ -3,6 +3,7 @@ const myImg = document.querySelector('#my-img')
 const myName = document.querySelector('#my-name')
 const myInfo = document.querySelector('.my-info')
 
+
 fetch('http://localhost:8080/myprofile',{
     method:'POST',
     headers: {
@@ -108,6 +109,65 @@ function openInfoProfile(isMyProfile,username) {
                     body: formData,
                 })
             }
+        })
+
+        spanUsername.addEventListener('click',()=>{
+
+            spanUsername.style.display='none'
+
+            changeUsername = document.createElement('input')
+            changeUsername.type = 'text'
+            changeUsername.classList.add('profile_change')
+
+            avatar.after(changeUsername)
+
+            changeUsername.addEventListener('keydown',(e)=>{
+                
+                if (e.key=='Enter' && changeUsername.value.length>=5){
+                    
+
+                    fetch('http://localhost:8080/changeusername',{
+                        method:'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            username: document.cookie.replace('User=',''),
+                            newUsername: changeUsername.value
+                        })
+                    })
+                    document.cookie='User='+changeUsername.value+'; max-age=31536000'
+                }
+            })
+        })
+
+        textInfoProfile.addEventListener('click',()=>{
+
+            textInfoProfile.style.display='none'
+
+            changeInfo = document.createElement('input')
+            changeInfo.type = 'text'
+            changeInfo.classList.add('profile_change')
+
+            spanUsername.after(changeInfo)
+
+            changeInfo.addEventListener('keydown',(e)=>{
+                
+                if (e.key=='Enter' && changeInfo.value.length>=5){
+                    
+
+                    fetch('http://localhost:8080/changeinfo',{
+                        method:'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            username: document.cookie.replace('User=',''),
+                            newInfo: changeInfo.value
+                        })
+                    })
+                }
+            })
         })
     }
 

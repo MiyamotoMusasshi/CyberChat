@@ -10,6 +10,7 @@ import register from './database/function/registration.js'
 import login from './database/function/autorization.js'
 import sendProfileInfo from './main-function/sendProfileInfo.js'
 import changeAvatar from './main-function/changeAvatar.js'
+import changeUsernameOrInfo from './main-function/changeUsernameOrInfo.js'
 
 dotenv.config()
 
@@ -60,6 +61,8 @@ app.post('/login', login)
 app.post('/myprofile',sendProfileInfo)
 app.post('/profileInfo',sendProfileInfo)
 app.post('/changeavatar',upload.single('avatar'),changeAvatar)
+app.post('/changeusername',changeUsernameOrInfo)
+app.post('/changeinfo',changeUsernameOrInfo)
 
 server.listen(PORT,()=>{
 
