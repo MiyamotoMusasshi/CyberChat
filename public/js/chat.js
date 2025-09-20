@@ -2,17 +2,17 @@ document.addEventListener('DOMContentLoaded',()=>{
 
     document.querySelector('.chat_msg').scrollTop = document.querySelector('.chat_msg').scrollHeight
 })
-
+console.log(document.cookie.replace('User=',''))
 const search = document.querySelector('#search')
 const listChats = document.querySelector('#list-chats')
 
 search.addEventListener('keydown',(key)=>{
 
-    if (search.value!=document.cookie.replace('User=','')){
+    if (search.value+key.key!=document.cookie.replace('User=','')){
 
-        if(document.querySelector('.main_chat-selection')){
-            
-            listChats.removeChild(document.querySelector('.main_chat-selection'))
+        if(document.querySelector('.search-result')){
+
+            listChats.removeChild(document.querySelector('.search-result'))
         }
 
         
@@ -40,6 +40,7 @@ search.addEventListener('keydown',(key)=>{
                 selectDiscussion.classList.add('main_chat-selection')
                 selectDiscussion.classList.add('cyber-glitch-0')
                 selectDiscussion.classList.add('fg-yellow')
+                selectDiscussion.classList.add('search-result')
                 chatInfo.classList.add('chat-info')
                 userInfo.classList.add('chat-info_last-msg')
 
@@ -47,7 +48,8 @@ search.addEventListener('keydown',(key)=>{
                 userInfo.innerHTML=info.info
                 username.innerHTML=info.username
 
-                listChats.appendChild(selectDiscussion)
+                
+                listChats.prepend(selectDiscussion)
                 selectDiscussion.appendChild(avatar)
                 selectDiscussion.appendChild(chatInfo)
                 chatInfo.appendChild(username)
