@@ -105,8 +105,9 @@ ul::-webkit-scrollbar-track:active {
 }
 .chat-info_last-msg{
     opacity: 0.5;
-    width: 70%;
+    width: 100%;
     overflow: hidden;
+    white-space: nowrap;
 }
 .main_chat{
   border-left: 1px solid #00ffd2;

@@ -50,10 +50,18 @@ const server = http.createServer(app)
 
 // wsServer.on('connection', function connection(ws){
 
-//     ws.on('error', console.error)
+//   ws.on('error', console.error)
 
 
-//     ws.send('connection')
+//   ws.on('message',(data)=>{
+
+//     const message = data.toString('utf8')
+//     const parseMessage = JSON.parse(message)
+//     console.log(parseMessage.msg)
+
+//   })
+
+//   ws.send('connection')
 // })
 
 app.post('/register', register)
@@ -63,6 +71,7 @@ app.post('/profileInfo',sendProfileInfo)
 app.post('/changeavatar',upload.single('avatar'),changeAvatar)
 app.post('/changeusername',changeUsernameOrInfo)
 app.post('/changeinfo',changeUsernameOrInfo)
+app.post('/search',sendProfileInfo)
 
 server.listen(PORT,()=>{
 

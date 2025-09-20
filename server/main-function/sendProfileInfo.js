@@ -23,6 +23,9 @@ export default async function sendProfileInfo(req,res){
 
                 console.error(err)
                 reject()
+            }else if(row==undefined){
+
+                resolve()
             }else{
 
                 if (row.avatar==null) {
@@ -45,6 +48,9 @@ export default async function sendProfileInfo(req,res){
 
                 console.error(err)
                 reject()
+            }else if(row==undefined){
+
+                resolve()
             }else{
 
                 if (row.info==null) {
@@ -64,5 +70,5 @@ export default async function sendProfileInfo(req,res){
     await promiseProfileImg
     await promiseProfileInfo
 
-    res.json({avatar:resAvatar,info:resInfoProfile})
+    res.json({avatar:resAvatar,info:resInfoProfile,username:username})
 }
