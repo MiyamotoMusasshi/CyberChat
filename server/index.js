@@ -11,6 +11,7 @@ import login from './database/function/autorization.js'
 import sendProfileInfo from './main-function/sendProfileInfo.js'
 import changeAvatar from './main-function/changeAvatar.js'
 import changeUsernameOrInfo from './main-function/changeUsernameOrInfo.js'
+import openChat from './main-function/openChat.js'
 
 dotenv.config()
 
@@ -18,6 +19,8 @@ const PORT = process.env.PORT
 const app =express()
 const __dirname = path.resolve()
 const uploadFolder = path.join(__dirname, 'img')
+
+const onlineUsers=[]
 
 app.use(cors())
 app.use(express.json())
@@ -45,24 +48,36 @@ const upload = multer({storage: storage})
 
 
 const server = http.createServer(app)
-// const wsServer = new WebSocketServer({server})
+const wsServer = new WebSocketServer({server})
 
 
-// wsServer.on('connection', function connection(ws){
+wsServer.on('connection', function connection(ws){
 
-//   ws.on('error', console.error)
+  ws.on('error', console.error)
 
 
-//   ws.on('message',(data)=>{
+  ws.on('message',(data)=>{
 
-//     const message = data.toString('utf8')
-//     const parseMessage = JSON.parse(message)
-//     console.log(parseMessage.msg)
+    const message = data.toString('utf8')
+    const parseMessage = JSON.parse(message)
 
-//   })
 
-//   ws.send('connection')
-// })
+    if (parseMessage.isOnline){
+
+      let username = parseMessage.username
+
+      onlineUsers.push(username)
+
+      ws.on('close',()=>{
+
+        onlineUsers.pop(username)
+      })
+    }
+  })
+
+  
+
+})
 
 app.post('/register', register)
 app.post('/login', login)
@@ -72,6 +87,7 @@ app.post('/changeavatar',upload.single('avatar'),changeAvatar)
 app.post('/changeusername',changeUsernameOrInfo)
 app.post('/changeinfo',changeUsernameOrInfo)
 app.post('/search',sendProfileInfo)
+app.post('/openchat',openChat)
 
 server.listen(PORT,()=>{
 

@@ -3,8 +3,33 @@ document.addEventListener('DOMContentLoaded',()=>{
     document.querySelector('.chat_msg').scrollTop = document.querySelector('.chat_msg').scrollHeight
 })
 console.log(document.cookie.replace('User=',''))
+
+const socket = new WebSocket("ws://localhost:8080");
 const search = document.querySelector('#search')
 const listChats = document.querySelector('#list-chats')
+const selectDiscussion = document.querySelectorAll('.main_chat-selection')
+
+socket.onopen = function(){
+
+    socket.send(JSON.stringify({username:document.cookie.replace('User=',''),isOnline:1}))
+}
+
+
+function openChat(usernameInterlocutor){
+
+    fetch('http://localhost:8080/openchat',{
+        method:'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            usernameMy:document.cookie.replace('User=',''),
+            usernameInterlocutor:usernameInterlocutor
+        })
+    })
+}
+
+
 
 search.addEventListener('keydown',(key)=>{
 
@@ -31,16 +56,16 @@ search.addEventListener('keydown',(key)=>{
             
             if (info.avatar != '' && info.info!=''){
 
-                const selectDiscussion = document.createElement('div')
+                const selectDiscussionSearch = document.createElement('div')
                 const avatar = document.createElement('img')
                 const chatInfo = document.createElement('div')
                 const username = document.createElement('span')
                 const userInfo = document.createElement('span')
 
-                selectDiscussion.classList.add('main_chat-selection')
-                selectDiscussion.classList.add('cyber-glitch-0')
-                selectDiscussion.classList.add('fg-yellow')
-                selectDiscussion.classList.add('search-result')
+                selectDiscussionSearch.classList.add('main_chat-selection')
+                selectDiscussionSearch.classList.add('cyber-glitch-0')
+                selectDiscussionSearch.classList.add('fg-yellow')
+                selectDiscussionSearch.classList.add('search-result')
                 chatInfo.classList.add('chat-info')
                 userInfo.classList.add('chat-info_last-msg')
 
@@ -49,20 +74,17 @@ search.addEventListener('keydown',(key)=>{
                 username.innerHTML=info.username
 
                 
-                listChats.prepend(selectDiscussion)
-                selectDiscussion.appendChild(avatar)
-                selectDiscussion.appendChild(chatInfo)
+                listChats.prepend(selectDiscussionSearch)
+                selectDiscussionSearch.appendChild(avatar)
+                selectDiscussionSearch.appendChild(chatInfo)
                 chatInfo.appendChild(username)
                 chatInfo.appendChild(userInfo)
+
+                selectDiscussionSearch.addEventListener('click',openChat(username.innerHTML))
             }
         })
     }
 })
 
-// socket.onopen = function(){
-
-//     console.log('connect')
-    
-// }
 
 
