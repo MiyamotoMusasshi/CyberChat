@@ -52,7 +52,9 @@ export default async function register(req,res) {
         
         const hashPassword = bscrypt.hashSync(password, salt)
 
-        database.run(`INSERT INTO users (username, password) VALUES (?, ?)`, [username, hashPassword])
+        database.run(`INSERT INTO users (username, password, newUsername) VALUES (?, ?, ?)`, [username, hashPassword, username])
+        
+        database.run(`CREATE TABLE ${username} (chatWith TEXT, lastMsg TEXT, dataLastMsg TEXT)`)
     }
     
 }
