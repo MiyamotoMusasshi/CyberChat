@@ -12,6 +12,7 @@ import sendProfileInfo from './main-function/sendProfileInfo.js'
 import changeAvatar from './main-function/changeAvatar.js'
 import changeUsernameOrInfo from './main-function/changeUsernameOrInfo.js'
 import openChat from './main-function/openChat.js'
+import msgProcessing from './main-function/msgProcessing.js'
 
 dotenv.config()
 
@@ -20,7 +21,7 @@ const app =express()
 const __dirname = path.resolve()
 const uploadFolder = path.join(__dirname, 'img')
 
-const onlineUsers=[]
+export const onlineUsers=[]
 
 app.use(cors())
 app.use(express.json())
@@ -72,6 +73,11 @@ wsServer.on('connection', function connection(ws){
 
         onlineUsers.pop(username)
       })
+    }
+    if(parseMessage.msg){
+
+      ws.send(JSON.stringify({msgFor: parseMessage.usernameInterlocutor, username: parseMessage.username, msg:parseMessage.msg}))
+      msgProcessing(parseMessage.msg,parseMessage.username,parseMessage.usernameInterlocutor,parseMessage.date)
     }
   })
 
